@@ -98,7 +98,7 @@ if (Sys.Date() == "2022-10-26") {
   aviso_factura(bot)
 }
 
-if (Sys.Date() %in% c("2022-10-18", "2022-11-20", "2022-12-18")) {
+if (Sys.Date() == "2022-10-18" | Sys.Date() == "2022-11-20" | Sys.Date() ==  "2022-12-18") {
   aviso_factura(bot)
 }
 
