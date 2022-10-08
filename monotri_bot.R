@@ -1,10 +1,12 @@
-install.packages("googlesheets4")
+#install.packages("googlesheets4")
 install.packages("dplyr")
-install.packages("stringr")
+#install.packages("stringr")
 install.packages("telegram.bot")
+install.packages("glue")
 
 library(dplyr)
 library(telegram.bot)
+library(glue)
 
 token <- Sys.getenv("TOKEN_BOT")
 bot <- Bot(token = token)
@@ -42,6 +44,21 @@ updates <- bot$clean_updates()
 
 hoy <- Sys.Date()
 
+
+### MENSAJE DE BIENVENIDA (APRETANDO /start)
+updater <- Updater(token = token)
+
+start <- function(bot, update){
+  bot$sendMessage(chat_id = update$message$chat_id,
+                  text = sprintf("Hola! %s!", update$message$from$first_name))
+}
+
+
+start_handler <- CommandHandler("start", start)
+updater <- updater + start_handler
+
+
+updater$start_polling()
 
 
 # FUNCION DE AVISO PARA HACER FACTURA
