@@ -108,7 +108,7 @@ if (Sys.Date() == "2022-10-26") {
 }
 
 if (Sys.Date() == "2022-10-18" | Sys.Date() == "2022-11-20" | Sys.Date() ==  "2022-12-18") {
-  aviso_factura(bot)
+  aviso_vencimiento(bot)
 }
 
   
