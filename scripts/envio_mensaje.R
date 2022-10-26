@@ -1,16 +1,9 @@
-#install.packages("googlesheets4")
-install.packages("dplyr")
-#install.packages("stringr")
-install.packages("telegram.bot")
-install.packages("glue")
-
 library(dplyr)
 library(telegram.bot)
 library(glue)
 
 token <- Sys.getenv("TOKEN_BOT")
 bot <- Bot(token = token)
-
 
 ### SETUP USUARIO TELEGRAM
 updates <- bot$getUpdates()
@@ -41,34 +34,6 @@ if (n_users == 0) {
 }
 
 updates <- bot$clean_updates()
-
-hoy <- Sys.Date()
-
-
-# ### MENSAJE DE BIENVENIDA (APRETANDO /start)
-# updater <- Updater(token = token)
-# 
-# start <- function(bot, update){
-#   bot$sendMessage(chat_id = update$message$chat_id,
-#                   text = sprintf("Hola! %s!", update$message$from$first_name))
-# }
-# 
-# start_handler <- CommandHandler("start", start)
-# 
-# 
-# ### MENSAJE DE RESPUESTA PARA CUANDO ESCRIBEN AL BOT
-# echo <- function(bot, update){
-#   bot$sendMessage(chat_id = update$message$chat_id, 
-#                   text = "Lo siento, por el momento sólo soy un bot recordatorio")
-# }
-# 
-# echo_handler <- MessageHandler(echo, MessageFilters$text)
-# 
-# updater <- updater + start_handler + echo_handler
-# 
-# 
-# updater$start_polling()
-
 
 # FUNCION DE AVISO PARA HACER FACTURA
 aviso_factura <- function(bot) {
@@ -103,12 +68,5 @@ aviso_vencimiento <- function(bot) {
 }
 
 
-if (Sys.Date() == "2022-10-26") {
-  aviso_factura(bot)
-}
-
-if (Sys.Date() == "2022-10-18" | Sys.Date() == "2022-11-20" | Sys.Date() ==  "2022-12-18") {
-  aviso_vencimiento(bot)
-}
-
-  
+aviso_factura(bot)
+aviso_vencimiento(bot)
