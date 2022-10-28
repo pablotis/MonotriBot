@@ -1,6 +1,6 @@
 on:
   schedule:
-   - cron: '0 13 18,19,26,27 * *'
+   - cron: '0 13 18,19,26,27,28,29,30,31 * *'
   workflow_dispatch:
 
 name: calendario
