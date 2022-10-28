@@ -3,7 +3,7 @@ install.packages("dplyr")
 #install.packages("stringr")
 install.packages("telegram.bot")
 install.packages("glue")
-install.packages("lubridates")
+install.packages("lubridate")
 
 library(dplyr)
 library(telegram.bot)
