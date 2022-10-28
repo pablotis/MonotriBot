@@ -3,6 +3,7 @@ install.packages("dplyr")
 #install.packages("stringr")
 install.packages("telegram.bot")
 install.packages("glue")
+install.packages("lubridates")
 
 library(dplyr)
 library(telegram.bot)
@@ -78,7 +79,7 @@ aviso_factura <- function(bot) {
     user_send <- usuarios[o,]
     
     bot$sendMessage(chat_id = user_send$id,
-                    text = paste0("Hola ",user_send$user, " Monotributista! ya estamos a fin de mes, en caso de que tengas una vinculación permanente con tu empleador, es un buen momento para hacer la factura"))
+                    text = paste0("Hola ",user_send$user, " Monotributista! ya estamos a fin de mes. Si tenés que emitir una factura para que te paguen a tiempo, es un buen momento hacerlo!"))
     
     Sys.sleep(0.5)
     
@@ -103,11 +104,11 @@ aviso_vencimiento <- function(bot) {
 }
 
 
-if (Sys.Date() == "2022-10-26") {
+if (lubridate::day(Sys.Date()) %in% c(26:31)) {
   aviso_factura(bot)
 }
 
-if (Sys.Date() == "2022-10-18" | Sys.Date() == "2022-11-20" | Sys.Date() ==  "2022-12-18") {
+if (lubridate::day(Sys.Date()) %in% c(17:20)) {
   aviso_vencimiento(bot)
 }
 
