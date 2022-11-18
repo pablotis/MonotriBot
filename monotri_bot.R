@@ -95,7 +95,7 @@ aviso_vencimiento <- function(bot) {
     user_send <- usuarios[o,]
     
     bot$sendMessage(chat_id = user_send$id,
-                    text = paste0("Hola ",user_send$user, "Si aún no lo pagaste, se te está por vencer el pago mensual del monotriburo, ¡no cuelgues!"))
+                    text = paste0("Hola ",user_send$user, " Si aún no lo pagaste, se te está por vencer el pago mensual del monotriburo, ¡no cuelgues!"))
     
     Sys.sleep(0.5)
     
